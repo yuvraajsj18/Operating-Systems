@@ -107,6 +107,11 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
 - `wc` : displays word count of a file in the following format
 
+  - Options
+    - -w : prints only number of words.
+    - -l : prints only number of lines.
+    - -c : prints only number of characters.
+
   ```bash
   wc filename
   ```
@@ -189,6 +194,126 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   save the file.
 
   Now you can use `create` instead of `touch` anytime.
+
+
+
+### More Commands
+
+- **ed**: ed is a line oriented text editor, you can use it to edit/create a file like you did with *vi*.
+
+  ```bash
+  ed
+  a	# type a to append content to file
+  This is a line	# Start appending content to your file
+  This is another line my file
+  .	# This marks the end of file
+  w filename # appends lines to file or create a new file
+  ```
+
+- **who**: shows who is logged in
+
+  ```bash
+  who
+  yuvrajsj18 :0           2020-08-19 23:13 (:0)	# sample output
+  ```
+
+- **who am i**: show your own system details if you are in a multi-user system.
+
+- **pr**: shows content of files in print format.
+
+  - Total lines per page is 66, 10 for headers and 56 for content.
+  - The content is paginated so we can know how much content will be shown per page.
+  - *You can columnate the content using **-n** option*.
+
+  ```bash
+  pr filename
+  
+  2020-08-19 11:41                      file1                       Page 1
+  
+  
+  This is a text
+  this is more text
+  This is more more text
+  ```
+
+- **cmp**: Compare two files byte by byte. It will print the first byte number on the first line number where the content of two files differ.
+
+  ```bash
+  cmp file1 file2
+  file1 file2 differ: byte 1, line 1	# Sample output
+  ```
+
+- **diff**: compare files line by line. It also shows what needs to be changed to make file to make file1 same as file2.
+
+  - a means appends, c means change, d means delete.
+
+  ```bash
+  diff file1 file2
+  1,3c1,4				# Sample output
+  < This is a text
+  < this is more text
+  < This is more more text
+  ---
+  > ABC
+  > XYZ
+  > MNNP
+  > ABCC
+  ```
+
+- **;** : semicolon is used as a command separator to execute multiple command one after other.
+
+  ```bash
+  date; ls; who
+  Wednesday 19 August 2020 11:43:37 PM IST		# Sample output
+  file1*  file3*  file-ed*    mvfile1*  sort*
+  file2*  file4*  file-nums*  newDir/   yuvraj/
+  yuvrajsj18 :0           2020-08-19 23:13 (:0)
+  ```
+
+- **tail**: Output the last part of a file,by default it will output last 10 lines.
+
+  ```bash
+  tail filename 	# Output last 10 lines
+  tail -n filename 	# Output last n lines
+  tail +n filename 	# Output lines from nth line to end
+  ```
+
+- **Redirection Symbols**: There are three redirection symbols as follows:
+
+  - **>** : It prints the output of a command to file.
+
+    ```bash
+    ls > filename		# this will add all files and folder to filename
+    date > filename 	# this will change the content of file to the date
+    ```
+
+  - **>>** : It will append the output of a command to a file.
+
+    ```bash
+    ls >> filename		# This will append the output of ls to file
+    ```
+
+  - **|** : This is used to send output of one command to other command.
+
+    - ls | sort means first ls is executed and it output is send to sort then it will execute.
+
+    ```bash
+    ls | sort 	# this will print the files in sorted order
+    ```
+
+  - #### Questions
+
+    - How to print sorted list of users?
+
+      who | sort
+
+    - Count the number of files and directories in current directory:
+
+      ls | wc -l
+
+    - Count the number of files and directories in directory user1/networks:
+
+      ls user1/networks | wc -l
 
 
 
