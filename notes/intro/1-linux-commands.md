@@ -245,8 +245,6 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
 - **diff**: compare files line by line. It also shows what needs to be changed to make file to make file1 same as file2.
 
-  - a means appends, c means change, d means delete.
-
   ```bash
   diff file1 file2
   1,3c1,4				# Sample output
@@ -258,6 +256,69 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   > XYZ
   > MNNP
   > ABCC
+  ```
+
+  - a means append.
+
+    ```bash
+    3a4
+    > This is some text
+    # This means after line 3 you need to append given text to match line 4 of second file
+    ```
+
+  - c means change.
+
+    ```bash
+    2,3c3
+    < Uttar Pradesh
+    < Kolkata
+    ---
+    > Andhra Pradesh
+    # This means change line 2 to 3 of file 1 to line 3 of file 2
+    ```
+
+  -  d means delete.
+
+    ```bash
+    3d2
+    < Telangana
+    # Means delete line 3 of file1 to match line 2 of file2
+    ```
+
+- **sort** : sort lines of text files.
+
+  - -n means sort by numeric values.
+
+  ```bash
+  sort filename	# to sort by ascii values
+  sort -n filename # to sort by numeric values
+  ```
+
+  - +c means to sort according to a particular column in file. c starts with 0.
+
+  ```bash
+  cat filename	# we have a file with following content
+  word1	word4	word1
+  word2	word3	word2
+  word3	word2	word3
+  word4	word5	word4
+  word5	word6	word5
+  word6	word1	word6
+  word7	word8	word7
+  word8	word7	word8
+  word9	word9	word9
+  
+  sort +1 filename	# sort file according to second column
+  word6   word1   word6
+  word3   word2   word3
+  word2   word3   word2
+  word1   word4   word1
+  word4   word5   word4
+  word5   word6   word5
+  word8   word7   word8
+  word7   word8   word7
+  word9   word9   word9
+  # Look lines are sorted according to second column
   ```
 
 - **;** : semicolon is used as a command separator to execute multiple command one after other.
@@ -301,7 +362,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     ls | sort 	# this will print the files in sorted order
     ```
 
-  - #### Questions
+  - #### Exercise
 
     - How to print sorted list of users?
 
@@ -314,7 +375,108 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     - Count the number of files and directories in directory user1/networks:
 
       ls user1/networks | wc -l
+  
+- **grep** :  print lines that matches a given pattern.
 
+  - Format: grep -options regex filename
 
+  - Regex Basic Options:
+
+    | `?`         | The question mark indicates *zero or one* occurrences of the preceding element. For example, `colou?r` matches both "color" and "colour". |
+    | ----------- | ------------------------------------------------------------ |
+    | `*`         | The asterisk indicates *zero or more* occurrences of the preceding element. For example, `ab*c` matches "ac", "abc", "abbc", "abbbc", and so on. |
+    | `+`         | The plus sign indicates *one or more* occurrences of the preceding element. For example, `ab+c` matches "abc", "abbc", "abbbc", and so on, but not "ac". |
+    | `{n}`       | The preceding item is matched exactly *n* times.             |
+    | `{min,}`    | The preceding item is matched *min* or more times.           |
+    | `{min,max}` | The preceding item is matched at least *min* times, but not more than *max* times. |
+    | .           | matches any character                                        |
+    | ^           | Specify beginning                                            |
+    | $           | Specify end                                                  |
+
+    [Read more about regex](https://en.wikipedia.org/wiki/Regular_expression)
+
+    - Build Regex expression easily and visually with this tool - [Regex101](https://regex101.com/)
+
+  - Options for grep
+
+    - -v : print all lines that exludes the given regex.
+    - -n : print line numbers.
+
+  - #### Exercise
+
+    - Search for 'is' in a file
+
+      ```bash
+      grep 'is' filename
+      ```
+
+    - Search for lines that doesn't include 'is'
+
+      ```bash
+      grep -v 'is' filename
+      ```
+
+    - Check if user1 is logged in or not
+
+      ```bash
+      who | grep 'user1'
+      ```
+
+    - Find how many times user1 has logged in
+
+      ```bash
+      who | grep 'user1' | wc -l
+      ```
+
+    - Search all lines that end with 's'.
+
+      ```bash
+      grep 's$' filename
+      ```
+
+    - See all filenames that begins with 'a'
+
+      ```bash
+      # Solution 1 with grep
+      ls | grep '^a'
+      
+      # Solution 2 with ls
+      ls a*
+      ```
+
+    - See all empty lines in a file
+
+      ```bash
+      grep '^$' filename -n
+      ```
+
+    - Find all email address in a file
+
+      ```bash
+      grep '.\+@.\+\..\+' email_files.txt
+      ```
+
+      - Explanation
+        .\\+ means any character 1 or more times
+        @ means match @ character literally
+
+        .\\+ means any character 1 or more times
+
+        \\. means match the . character literally
+
+        .\\+ means any character 1 or more times
+
+- **Shell Variables** : Shell variables are special variables used by the shell.
+
+  - **$HOME** : Contains path of home directory
+
+  - **$PATH** : Contains executable's directories separated by a colon : 
+
+  - To Define your own variables:
+
+    ```bash
+    variable_name="value"
+    ```
 
 #### Thanks
+

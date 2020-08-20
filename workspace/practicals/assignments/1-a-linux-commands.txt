@@ -1,0 +1,130 @@
+ls: this will list directory content.
+Output: 
+aabc  abc  assignment1.txt  file  ss  xyz
+
+-------------------------------------------------------
+man who : shows manual for who command
+Output: 
+WHO(1)                          User Commands                         WHO(1)
+
+NAME
+       who - show who is logged on
+
+SYNOPSIS
+       who [OPTION]... [ FILE | ARG1 ARG2 ]
+
+DESCRIPTION
+       Print information about users who are currently logged in.
+
+       -a, --all
+              same as -b -d --login -p -r -t -T -u
+
+       -b, --boot
+              time of last system boot
+
+       -d, --dead
+              print dead processes
+
+       -H, --heading
+              print line of column headings
+
+       --ips  print  ips  instead of hostnames. with --lookup, canonicalizes
+              based on stored IP, if available, rather than stored hostname
+
+       -l, --login
+              print system login processes
+
+       --lookup
+              attempt to canonicalize hostnames via DNS
+
+       -m     only hostname and user associated with stdin
+
+       -p, --process
+              print active processes spawned by init
+...(more)
+
+------------------------------------------
+mkdir abc: creates a new folder abc in the current directory.
+
+----------------------------------------
+cd .. : change directory one level up
+
+cd : change directory to HOME
+
+cd /user1/abc: change directory to user1/abc relative to pwd.
+
+----------------------------------------
+difference between cp and mv: 
+
+cp file1 file2 : copies file1 to file2 without removing file1
+mv file1 file2 : moves file1  to file2 and then removes file1
+
+-----------------------------------------
+full form of pwd : present working directory
+
+-----------------------------------------------------
+output of diff command: shows difference between two files line by line
+Output
+diff abc aabc
+2c2
+< is not a sentence
+---
+> is a sentence
+
+------------------------------------------
+
+tail -2 mno : shows last two lines of mno
+Output:
+11
+12
+
+ ---------------------------------------------
+tail +6 hello : shows line 6 to end of hello
+Output
+6
+7
+8
+9
+10
+11
+12
+
+------------------------------------------------------------
+explain each col of ls –l 
+total 28
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18   70 Aug 20 09:35 aabc
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18   74 Aug 20 10:30 abc
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18 1786 Aug 20 10:32 assignment1.txt
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18  413 Aug 20 10:25 colfile
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18   77 Aug 20 09:44 file
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18   27 Aug 20 10:32 hello
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18   27 Aug 20 10:31 mno
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18    0 Aug 20 09:52 ss
+-rw-rw-r-- 1 yuvrajsj18 yuvrajsj18    0 Aug 20 09:35 xyz
+
+Explanation:
+Column 1:
+
+Column 1 shows permission for files and folders for three different users - owner | group | others
+
+r = read, w = write, x = execute
+Column 2:
+
+Column 2 shows number of hard links to that file or folder which is 1 by default.
+
+A link in UNIX is a pointer to a file.
+
+Column 3: Shows file owner
+
+Column 4: Shows file group
+
+Column 5: Shows file size in bytes
+
+Column 6: Shows file date and time of creation
+
+Column 7: Shows filename
+
+-----------------------------------------------
+
+what is $PATH : $PATH is a shell variable which contains a set of directories that has executables file
+in it. The shell first searches this PATH for executables then the current directory when running a command.
