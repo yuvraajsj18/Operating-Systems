@@ -457,7 +457,9 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
       ```
 
       - Explanation
+      
         .\\+ means any character 1 or more times
+        
         @ means match @ character literally
 
         .\\+ means any character 1 or more times
