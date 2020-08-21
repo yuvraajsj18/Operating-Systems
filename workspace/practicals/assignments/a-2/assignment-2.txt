@@ -1,0 +1,264 @@
+1. Print long listing of file names in current directory in time ordering.
+
+command: ls -lt
+
+output:
+        total 5
+        -rwxrwxrwx 1 root root   0 Aug 21 11:04 xyz*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:04 abc*
+        -rwxrwxrwx 1 root root 964 Aug 21 11:04 assignment-2.txt*
+        -rwxrwxrwx 1 root root  76 Aug 21 11:02 file1*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file7*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file6*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file5*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file4*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file3*
+        -rwxrwxrwx 1 root root   0 Aug 21 11:01 file2*
+
+------------------------------
+
+2. Print file named file1 in print format
+
+command: pr file1
+
+Output:
+
+
+        2020-08-21 11:02                      file1                       Page 1
+
+
+        This is a line
+
+        This is another line
+
+        This is also a line
+
+        I am line too!!
+
+-----------------------------
+
+3. Create copy of the file abc having name xyz
+
+Command: cp abc xyz
+
+
+-----------------------------
+
+4. Rename a file named hello to hello1
+
+Command: mv hello hello1
+
+--------------------------------
+
+5. Command to show only those lines of the file abc that have the word try
+
+Command: grep 'try' abc
+
+Output:
+        I am trying
+        try
+        he will try
+        you are not trying
+
+-------------------------------
+
+6. Command to show only those lines of the file 'poem' that do not have the word 'this'
+
+Command: grep -v 'this' poem
+
+Output:
+        not here
+        i have that
+        not that
+
+------------------------------------
+
+7. Command to show only those lines of the file 'abc' that have the word 'try' along with their line numbers
+
+Command: grep -n 'try' abc
+
+Output:
+        1:I am trying
+        2:try
+        4:he will try
+        5:you are not trying
+
+----------------------
+
+8. Command to show only those lines of the file 'poem' that do not have the word 'this' along with their line number.
+
+Command: grep -nv 'this' poem
+
+Output:
+        2:not here
+        3:i have that
+        5:not that
+
+-----------------------
+
+9. Count total number of lines in all the files whose name start with 't' and end with 'm'
+
+Command: wc t*m -l
+
+------------
+
+10. Sort a numeric file in reverse ordering
+
+Command: sort -nr filename
+
+Output:
+        31
+        11
+        5
+        4
+        3
+        2
+        1
+
+----------------
+
+11. Display content of all files starting with 'ch' 
+
+Command: cat ch*
+
+------------------------
+
+12. Display content of file 'xyz' starting from 3rd line
+
+Command: tail +3 xyz
+
+Output:
+        3
+        4
+        4
+        5
+        6
+        7
+        8
+
+------------------------
+
+13. Display content of file 'abc' last 5 lines.
+
+Command: tail -5 abc
+
+Output:
+        2
+        3
+        4
+        5
+        6
+
+----------------------
+
+14. Sort on 2nd column of the file abc in reverse order.
+
+Command: sort +1 -r abc
+
+Output:
+        121     e       3213
+        77      d       121
+        4       c       1
+        3       b       2
+        1       a       2
+
+-------------
+
+15. Sort on 2nd column of the numeric file 'abc' in reverse order
+
+Command: sort +1 -nr abc
+
+-----------------
+
+16. Count the number of users currently logged in
+
+Command: who | wc -l
+
+------------
+
+17. How to check the directory you are currently in
+
+Command: pwd
+
+-------------
+
+18. Display the content of root directory
+
+Command: ls /
+
+-------------
+
+19. Where is the file 'date' stored? Give the complete path
+
+Command: whereis date
+Output:
+        date: /bin/date
+
+---------------
+
+20. Create a directory 'hello' and go inside it
+
+Commands:  mkdir hello; cd hello
+
+-------------
+
+21. Remove all files with the extension .txt in the directory h1
+
+Command: rm h1/*.txt
+
+-------------
+
+22. Put the output of ls command in a file named 'tt'
+
+Command: ls > tt
+
+--------------
+
+23. Count number of files in a directory named 'abc'
+
+Command: ls abc | wc -l
+
+-------------
+
+24. Count the number of files in the current directory whose name start with 'h'
+
+Command: ls | grep '^h' | wc -last
+
+-------------------------------
+
+25. Count the number of files in the current directory with the file name single character long.
+
+Command: ls | grep '^.$' | wc -l
+
+------------------------
+
+26. Check if bsc4 has logged in or not
+
+Command: who | grep 'bsc4'
+
+----------------------
+
+27. List the names of files in 3 columns
+
+Command: ls | pr -3
+
+Output:
+
+        2020-08-21 11:55                                                  Page 1
+
+
+        a                       e                       hello
+        abc                     file1                   hfile
+        assignment-2.txt        file2                   hfile1
+        b                       file3                   poem
+        c                       file4                   tim
+        cat                     file5                   tom
+        chch                    file6                   tt
+        chchch                  file7                   xyz
+        d                       h1
+
+-----------------------
+
+28. print -> he said, "he is well"
+
+Command: echo 'he said. "he is well"'
