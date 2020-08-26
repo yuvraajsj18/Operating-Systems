@@ -12,13 +12,13 @@ int main()
     {
         printf("Hello from the Parent %d\n", id);
     }
-    
+
     return 0;
 }
 
 /*
     Command: gcc -o forkif forkif.c
-             ./forkif
+            ./forkif
     Output:
             Hello from the Parent 18149
             Hello from the Child 0
