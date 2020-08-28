@@ -1,0 +1,16 @@
+1.  Difference between system call and function call:
+
+System Call:
+    - A function provided by the kernel to enter kernel mode to access a resource.
+    - Context switching happens in system call.
+    - Allow the program to access memory or a hardware resource from the kernel.
+
+Function Call:
+    - A request made by a program that execute a predefined function.
+    - No Context switch occurs in function call.
+    - Helps to pass control to a specific function to execute a task.
+
+2. Prototype of WAIT() function: the wait function suspends execution of the current process until a child has exited.
+    - Prototype:
+        #include <sys/wait.h>
+        pid_t wait( int* status );
