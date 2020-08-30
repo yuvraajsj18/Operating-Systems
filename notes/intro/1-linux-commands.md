@@ -1,20 +1,20 @@
 # Basic Linux Commands
 
-To execute the following linux commands, open your terminal/shell.
+To execute the following Linux commands, open your terminal/shell.
 
-You may use a one of the following to get a linux shell on your computer:
+You may use a one of the following to get a Linux shell on your computer:
 
 - Linux distribution(distro) like [ubuntu](https://ubuntu.com/download/desktop)
 - [Virtual machine](https://www.virtualbox.org/) 
-- [Windows subsytem for linux(WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a linux shell on windows 10.
+- [Windows subsystem for Linux(WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to get a Linux shell on Windows 10.
 
-If you don't have any, the easiest to start with will be WSL in my opinion as you can easily download it from Microsoft store on windows 10.
+If you don't have any, the easiest to start with will be WSL in my opinion as you can easily download it from Microsoft Store on Windows 10.
 
 ### Commands
 
 - `date` : prints the system date and time
 
-- `pwd` : Short for present working directory, it outputs the current working directory.
+- `pwd` : Short for the present working directory, it outputs the current working directory.
 
 - `touch` : Creates a new file
 
@@ -61,25 +61,25 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
       **Column 2**:
 
-      Column 2 shows number of hard links to that file or folder which is 1 by default. 
+      Column 2 shows the number of hard links to that file or folder which is 1 by default. 
 
       A link in UNIX is a pointer to a file.
 
       **Column 3**: Shows file owner
 
-      **Column 4**: Shows file group
+      **Column 4**: Shows file-group
 
       **Column 5**: Shows file size in bytes
 
-      **Column 6**: Shows file date and time of creation
+      **Column 6**: Shows file date and time of the creation
 
-      **Column 7**: Shows filename
+      **Column 7**: Shows the filename
 
   - You may use different options in combination like: `ls -lr`
 
 - **Terminal Based Editors**
 
-  - Various different editors exists for editing files in a terminal like **vi**, **vim**, **nano**.
+  - Various different editors exist for editing files in a terminal like **vi**, **vim**, **nano**.
 
   - `vi` : Used to create a new file or edit previously created once.
 
@@ -87,7 +87,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     vi newFileName
     ```
 
-    this will create new file named newFileName in your current directory and prompt an editor in the terminal.
+    this will create a new file named newFileName in your current directory and prompt an editor in the terminal.
 
     - To start editing the file, press `i`. Now you are in *insert* mode. Type whatever you want.
     - To exit the insert mode press `esc`.
@@ -95,7 +95,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     - To save and exit the vi, press `:` and then type `wq`.
     - To quit the vi editor without saving, press `:` and type `!q`.
 
-  - `vim` : vim is similar editor to `vi` but with more features. You can perform similar command in vim like vi.
+  - `vim` : vim is similar editor to `vi` but with more features. You can perform the similar commands in vim like vi.
 
   - `nano` : nano is the easiest between all three. Type `nano filename` and you will understand the rest yourself.
 
@@ -108,9 +108,9 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 - `wc` : displays word count of a file in the following format
 
   - Options
-    - -w : prints only number of words.
-    - -l : prints only number of lines.
-    - -c : prints only number of characters.
+    - -w : prints only the number of words.
+    - -l : prints only a number of lines.
+    - -c : prints only the number of characters.
 
   ```bash
   wc filename
@@ -132,7 +132,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   rm filename
   ```
 
-  the file with name 'filename' will be deleted.
+  the file with the name 'filename' will be deleted.
 
   **To delete a directory(folder) use the option `-r` which means recursively delete all the files in the folder
 
@@ -148,7 +148,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
   Now if you execute `ls` it will show folderName.
 
-- `cd` : change current working directory to given directory.
+- `cd` : change the current working directory to the given directory.
 
   ```bash
   cd folderName
@@ -162,7 +162,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
 - `cp` : copy a file/files to another folder.
 
-  Suppose you have two files named file1, file2 and you wants to copy them in a folder named new in the current directory.
+  Suppose you have two files named file1, file2 and you want to copy them in a folder named new in the current directory.
 
   ```bash
   cp file1 file2 new
@@ -177,7 +177,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   create file1
   ```
 
-  Now `create` works same as `touch`.
+  Now `create` works the same as `touch`.
 
   **Note** : The alias will exist for the current session only and will be forgotten once you restart the terminal.
 
@@ -199,7 +199,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
 ### More Commands
 
-- **ed**: ed is a line oriented text editor, you can use it to edit/create a file like you did with *vi*.
+- **ed**: ed is a line-oriented text editor, you can use it to edit/create a file like you did with *vi*.
 
   ```bash
   ed
@@ -219,9 +219,9 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
 - **who am i**: show your own system details if you are in a multi-user system.
 
-- **pr**: shows content of files in print format.
+- **pr**: shows the content of files in print format.
 
-  - Total lines per page is 66, 10 for headers and 56 for content.
+  - Total lines per page are 66, 10 for headers, and 56 for content.
   - The content is paginated so we can know how much content will be shown per page.
   - *You can columnate the content using **-n** option*.
 
@@ -236,7 +236,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   This is more more text
   ```
 
-- **cmp**: Compare two files byte by byte. It will print the first byte number on the first line number where the content of two files differ.
+- **cmp**: Compare two files byte by byte. It will print the first-byte number on the first line number where the content of two files differs.
 
   ```bash
   cmp file1 file2
@@ -263,7 +263,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     ```bash
     3a4
     > This is some text
-    # This means after line 3 you need to append given text to match line 4 of second file
+    # This means after line 3 you need to append given text to match line 4 of the second file
     ```
 
   - c means change.
@@ -290,11 +290,11 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   - -n means sort by numeric values.
 
   ```bash
-  sort filename	# to sort by ascii values
+  sort filename	# to sort by ASCII values
   sort -n filename # to sort by numeric values
   ```
 
-  - +c means to sort according to a particular column in file. c starts with 0.
+  - +c means to sort according to a particular column in the file. c starts with 0.
 
   ```bash
   cat filename	# we have a file with following content
@@ -321,7 +321,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   # Look lines are sorted according to second column
   ```
 
-- **;** : semicolon is used as a command separator to execute multiple command one after other.
+- **;** : semicolon is used as a command separator to execute multiple commands one after another.
 
   ```bash
   date; ls; who
@@ -331,7 +331,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
   yuvrajsj18 :0           2020-08-19 23:13 (:0)
   ```
 
-- **tail**: Output the last part of a file,by default it will output last 10 lines.
+- **tail**: Output the last part of a file, by default it will output the last 10 lines.
 
   ```bash
   tail filename 	# Output last 10 lines
@@ -345,7 +345,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
     ```bash
     ls > filename		# this will add all files and folder to filename
-    date > filename 	# this will change the content of file to the date
+    date > filename 	# this will change the content of the file to the date
     ```
 
   - **>>** : It will append the output of a command to a file.
@@ -354,9 +354,9 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
     ls >> filename		# This will append the output of ls to file
     ```
 
-  - **|** : This is used to send output of one command to other command.
+  - **|** : This is used to send the output of one command to another command.
 
-    - ls | sort means first ls is executed and it output is send to sort then it will execute.
+    - ls | sort means first ls is executed and its output is send to sort then it will execute.
 
     ```bash
     ls | sort 	# this will print the files in sorted order
@@ -364,11 +364,11 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
   - #### Exercise
 
-    - How to print sorted list of users?
+    - How to print the sorted list of users?
 
       who | sort
 
-    - Count the number of files and directories in current directory:
+    - Count the number of files and directories in the current directory:
 
       ls | wc -l
 
@@ -376,7 +376,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
 
       ls user1/networks | wc -l
   
-- **grep** :  print lines that matches a given pattern.
+- **grep** :  print lines that match a given pattern.
 
   - Format: grep -options regex filename
 
@@ -410,7 +410,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
       grep 'is' filename
       ```
 
-    - Search for lines that doesn't include 'is'
+    - Search for lines that don't include 'is'
 
       ```bash
       grep -v 'is' filename
@@ -434,7 +434,7 @@ If you don't have any, the easiest to start with will be WSL in my opinion as yo
       grep 's$' filename
       ```
 
-    - See all filenames that begins with 'a'
+    - See all filenames that begin with 'a'
 
       ```bash
       # Solution 1 with grep
