@@ -1,0 +1,122 @@
+1. Output of echo *
+
+file1 file2
+
+------------------------------------
+
+2. Output of pr *
+
+
+2020-09-02 11:22                      file1                       Page 1
+
+
+line 1
+line 2
+line 3
+
+
+2020-09-02 11:23                      file2                       Page 1
+
+
+line 1 in file 2
+line 2
+line 3
+
+-----------------------
+
+3. Difference between ls h*/, ls h*, ls /h*
+
+ls h*/ :
+
+hello/:
+he
+
+hello1/:
+
+hello2/:
+
+
+ls h*:
+
+h1  h2
+
+hello:
+he
+
+hello1:
+
+hello2:
+
+
+ls /h*: 
+
+linuxbrew/  lost+found/  yuvrajsj18/
+
+---------------
+
+4. Diff between ls * and ls .
+
+ls * : 
+
+file1*  file2  hfile1
+
+h:
+file1  file2
+
+ls . : file1*  file2  h/  hfile1
+
+-------------
+
+5. Difference between ls ? and ls '?'
+
+ls ? matches any file with one character, ls '?' literally matches a file with
+'?' name.
+
+---------------
+
+6. Output of cat f1 f2 f3 > try: this will save content of f1 f2 f3 in try file one by one
+
+-----------
+
+7. Count the number of user currently logged in without using the pipe operator:
+    who > temp
+    wc -l temp
+
+--------------
+
+8. Count the number of files in the directory ht:   ls ht/ | wc -l
+
+
+------------
+
+9. Output of sort file1 file2: sorts file1 and file2 combined
+
+line 1 in file1
+line 1 in file2
+line 2 in file1
+line 2 in file2
+line 3 in file1
+line 3 in file2
+
+----------------------
+
+10. ls > tryfile the output of the command contains the file tryfile too why?
+    Because the execution of this command takes place from right to left. so tryfile is first created and thus included in ls output
+
+
+------------------
+
+11. Difference between who | sort and who > sort:
+    who | sort displays the users after sorting 
+    who > sort creates a file named sort and stores the output of who that is the list of user in it.
+
+
+----------------
+
+12. 
+
+
+
+
+--------------
+
