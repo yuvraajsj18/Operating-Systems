@@ -40,7 +40,7 @@ This active form of a computer program is known as a **process**.
 
 > One thing to note is - if you run the same program multiple times, for instance, you open chrome twice you will be creating two different processes from one program. Although both processes will contain the same instructions in **text segment**, their data may be different.
 
-**Diagrammatic Representation of a process in memory: **
+**Diagrammatic Representation of a process in memory:**
 
 <img src="What Happens When You Run a Computer Program.assets/image-20200912000950072.png" alt="Process in memory"/>
 
