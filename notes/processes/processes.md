@@ -4,7 +4,7 @@
 
 - Process - a program in execution.
 
-- Process is not just *program code*(AKA text section), it also includes:
+- A process is not just *program code*(AKA text section), it also includes:
 
   - the current activity represented by - 
     - Program Counter Value
@@ -15,15 +15,15 @@
 
 - *Program* is a **passive** entity, whereas a *process* is an **active** entity.
 
-- If user(multiple or single) invoke same copy of the browser, these will be separate processes, despite belonging to the same passive entity.
+- If a user(multiple or single) invokes the same copy of the browser, these will be separate processes, despite belonging to the same passive entity.
 
-  - Although the text segment of processes of same program are equivalent, the data, heap, and stack sections are different.
+  - Although the text segment of the processes of the same program is equivalent, the data, heap, and stack sections are different.
 
 - **Summary**:
 
   **A program is not a process**; a *program* is a *passive* entity, such as a file containing a list of instructions stored on a disk(executable file), whereas a *process* is an *active* entity, with a *program counter* specifying the next instruction to *execute* and a set of *associated resources*.
 
-  A *program becomes a process* when an executable file is *loaded into memory* either by double clicking or writing a command.
+  A *program becomes a process* when an executable file is *loaded into memory* either by double-clicking or writing a command.
 
   ![Process in memory](processes.assets/3_01_Process_Memory.jpg)
 
@@ -36,7 +36,7 @@
 - Each process may be in one of the following states:
   - **New** - The process is being created.
   - **Running** - Instructions are being executed.
-    - At one moment of time, only one process can be in running state.
+    - At one moment, only one process can be in running state.
   - **Waiting** - The process is waiting for some event to occur. (such as an I/O completion or reception of a signal).
   - **Ready** - The process is waiting to be assigned to a processor.
   - **Terminated**: The process has finished execution.
@@ -49,24 +49,24 @@
 
 ## Process Control Block
 
-- Each process is represented in the OS by a Process Control Block(PCB) - also task control block.
-- It contains Information associated with a specific process.
+- Each process is represented in the OS by a Process Control Block(PCB) - also known as a task control block.
+- It contains information associated with a specific process.
 - Information Stored:
   - **Process State**: new, ready, running, waiting, terminated.
   - **Program counter**: address of next instruction to be executed.
-  - **CPU registers**: Content of all CPU centric registers like accumulators, index register, stack pointers, etc must be saved when interupt occurs, to allow the process to be continued correctly afterward.
-  - **CPU Scheduling Information**: This information includes process priority, scheduling queue pointers and other scheduling parameters.
+  - **CPU registers**: Content of all CPU centric registers like accumulators, index register, stack pointers, etc must be saved when an interrupt occurs, to allow the process to be continued correctly afterward.
+  - **CPU Scheduling Information**: This information includes process priority, scheduling queue pointers, and other scheduling parameters.
   - **Memory management information**: Information about the memory allocated to the process.
-  - **Accounting information**: CPU used, clock time elapsed since start, time limits.
+  - **Accounting information**: CPU used, clock time elapsed since the start, time limits.
   - **I/O status information**: I/O devices allocated to process, list of open files.
 
 ![image-20200830153603631](processes.assets/image-20200830153603631.png)
 
 ## Process Scheduling
 
-- Maximise CPU use, quickly switch processes onto CPU for time sharing.
+- Maximize CPU use, quickly switch processes onto CPU for time-sharing.
 
-- **Process scheduler** selects among available processes for next execution on CPU.
+- **Process scheduler** selects among available processes for the next execution on CPU.
 
 - Maintains **scheduling queues** of processes
 
@@ -74,13 +74,13 @@
 
   - **Ready queue** - set of all processes residing in main memory, ready and waiting to execute.
 
-  - **Device queue** - set of all processes waiting for an I/O device. Each device has its own device queue.
+  - **Device queue** - set of all processes waiting for an I/O device. Each device has a device queue.
 
   - Process Migrate among the various queues.
 
   - These queues are generally stored as a *linked list*.
 
-    - A ready queue header contains pointers to the first and final PCB in the list.
+    - A ready queue header contains pointers to the first and final PCB on the list.
     - Each PCB includes a pointer field that points to the next PCB in the ready queue.
 
     ![image-20200830160739887](processes.assets/image-20200830160739887.png)
@@ -91,7 +91,7 @@
 
       A new process is initially put in the ready queue. It waits there until it is selected for execution, or is **dispatched**. Once the process is allocated the CPU and is executing, one of the several events could occur:
 
-      - The process could issue an I/O request and the be placed in an I/O queue.
+      - The process could issue an I/O request and then be placed in an I/O queue.
       - The process could create a new subprocess and wait for the subprocess's termination.
       - The process could be removed forcibly from the CPU as a result of an interrupt, and be put back in the ready queue.
       - On termination, the process is removed from all queues and PCB and resources are deallocated.
@@ -106,16 +106,16 @@
 - **Long-term scheduler(or job scheduler)** - selects which processes should be brought into the ready queue.
 
   - Long term scheduler is invoked infrequently (seconds, minutes) => (may be slow)
-  - The long term scheduler controls the **degree of multiprogramming**(the number of processes in main memory).
+  - The long term scheduler controls the **degree of multiprogramming**(the number of processes in the main memory).
 
 - Processes can be described as either:
 
-  - **I/O bound process**: spends more time doing I/O than computation, many short CPU burst.
+  - **I/O bound process**: spends more time doing I/O than computation, many short CPU bursts.
   - **CPU bound process**: spends more time doing computations, few very long CPU bursts.
 
 - *Long term scheduler strives for good process mix(there should be both I/O bound and CPU bound processes)*
 
-- **Medium Term Scheduler** - It is required when long term scheduler did not bring good mix of CPU and IO bound processes.
+- **Medium Term Scheduler** - It is required when long term scheduler did not bring a good mix of CPU and IO bound processes.
 
   - It decreases the degree of multiprogramming.
   - Removes process from memory, store on disk, bring back in from disk to continue execution: **swapping**.
@@ -130,23 +130,23 @@ When a context switch occurs, the kernel saves the context of the old process in
 
 *Context switch time is pure overhead*: because the system does no useful work while switching.
 
-Speed of context switch varies from machine to machine depending on memory speed, number of registers etc.
+The speed of context switch varies from machine to machine depending on memory speed, the number of registers, etc.
 
-The more complex the OS, the more work must be done during context switch.
+The more complex the OS, the more work must be done during a context switch.
 
 ![image-20200830204405120](processes.assets/image-20200830204405120.png)
 
 ## Multitasking in Mobile Systems
 
-- Some mobile systems (Example: early version of IOS) allow only one process to run, others suspended.
+- Some mobile systems (Example: an early version of IOS) allow only one process to run, others suspended.
 - Due to screen real estate, user interface limits. IOS provides for a
   - Single **foreground** process - controlled via user interfaces.
   - Multiple **background** processes - in memory, running, but not on the display, and with limits.
-  - Limits include single, short task, receiving notification of events, specific long running tasks like audio playback.
+  - Limits include single, short tasks, receiving notification of events, specific long-running tasks like audio playback.
 - Android runs foreground and background, with fewer limits.
-  - Backgroud process uses a **service** to perform tasks.
-  - Service can keep running even if background process is suspended.
-  - Service has no user interface, less memory use.
+  - The background process uses a **service** to perform tasks.
+  - Service can keep running even if the background process is suspended.
+  - The service has no user interface, less memory use.
 
 
 
@@ -156,16 +156,16 @@ Systems must provide a mechanism for process creation and termination.
 
 ### Process Creation
 
-- A process can create several new processes, via a **create process system call**, during the course of execution.
+- A process can create several new processes, via a **create process system call**, during execution.
 
   - The creating process is called a **parent** process.
   - The new processes are called the **children** processes.
-  - Children processes can create other processes forming a **tree** of processes.
+  - Children's processes can create other processes forming a **tree** of processes.
 
-- Processes are identified using a unique identifier integer number known as **process identifier(pid)**.
+- Processes are identified using a unique identifier integer number known as **process identifier(PID)**.
 
-  - You can get a list of all processes by using `ps -el` command on unix systems.
-  - A tree of processes on a typical solaris system - 
+  - You can get a list of all processes by using the `ps -el` command on UNIX systems.
+  - A tree of processes on a typical Solaris system - 
 
   ![Tree of processes](processes.assets/image-20200906115053765.png)
 
@@ -183,24 +183,24 @@ Systems must provide a mechanism for process creation and termination.
 - **Execution Options** when a subprocess is created:
 
   - Parent and children execute concurrently.
-  - Parent waits until children terminates.
+  - Parent waits until children terminate.
 
 - **Address Space Options** for the new process:
 
-  - Child process is a duplicate of parent process. This means they have the same program and data as the parent).
-  - Child process has a new program loaded into it.
+  - The child process is a duplicate of the parent process. This means they have the same program and data as the parent).
+  - The child process has a new program loaded into it.
 
 #### Creating a new process in a UNIX OS
 
 - A new process in UNIX is created using the `fork()` system call.
--  The new process consist of a copy of the **address space** of the original process.
+-  The new process consists of a copy of the **address space** of the original process.
 - Both parent and child continue execution after fork() call with one difference - 
   - **The return code for fork() is 0 for the new child process.**
-  - **The return code for fork() is the PID of child for the parent process.**
-- You can use `exec()` system call after `fork()` to replace process's memory space with a new program.
+  - **The return code for fork() is the PID of the child for the parent process.**
+- You can use the `exec()` system call after `fork()` to replace the process's memory space with a new program.
   - The `exec()` system call loads a binary file into memory(destroying the memory image of the program containing the exec()) and starts its execution.
 - A parent can issue a `wait()` system call to move itself off the ready queue until the termination of the child.
-  - `wait()` blocks the termination of parent until one of the child terminates.
+  - `wait()` blocks the termination of the parent until one of the children terminates.
 
 ```c
 #include <stdio.h>
@@ -238,29 +238,29 @@ int main()
 - To get the process id of a process or its parent you can use:
   - `getpid()`: returns PID of current process.
   - `getppid()`: returns PID of parent process.
-- A process can execute multiple `fork()` call, in that case the number of process will be 2<sup>n</sup>. where n is the number of fork() calls. This count will also include the first parent process.
-- The following example shows creation of process when three fork() calls are made.
+- A process can execute multiple `fork()` call, in that case, the number of the process will be 2<sup>n</sup>. where n is the number of fork() calls. This count will also include the first parent process.
+- The following example shows the creation of a process when three fork() calls are made.
 
 ![image-20200906140805022](processes.assets/image-20200906140805022.png)
 
 ### Process Termination
 
-- Process executes last statement and then asks the operating system to delete it using `exit()` system call.
+- The process executes the last statement and then asks the operating system to delete it using the `exit()` system call.
 
   - Returns **status data** from child to parent via `wait()`.
   - Process resources are deallocated by OS.
 
-- Parent may terminate the execution of children processes using the `abort()` system call. Some reasons for doing so:
+- The parent may terminate the execution of children processes using the `abort()` system call. Some reasons for doing so:
 
-  - Child has exceeded allocated resources.
-  - Task assigned to child is no longer required.
+  - The child has exceeded allocated resources.
+  - The task assigned to the child is no longer required.
   - The parent is exiting and the OS does not allow a child to continue if its parent terminates.
 
-- Some OS do not allow child to exists if its parent has terminated. If a process terminates, then all its children must also be terminated. This is known as **cascading termination.**
+- Some OS does not allow a child to exists if its parent has terminated. If a process terminates, then all its children must also be terminated. This is known as **cascading termination.**
 
   - Termination is initiated by the OS.
 
-- The parent process may wait for termination of a child process by using the wait() system call. The call returns status information and the PID of the terminated process.
+- The parent process may wait for the termination of a child process by using the wait() system call. The call returns status information and the PID of the terminated process.
 
   ```c
   pid_t pid = wait(&status);
@@ -268,7 +268,7 @@ int main()
 
 - If no parent is waiting (did not invoke `wait()` ) the process is a **zombie**.
 
-- If parent terminated without invoking `wait()`, process is an **orphan.**
+- If the parent terminated without invoking `wait()`, the process is an **orphan.**
 
   - orphan processes are adopted by the `init` process.
 
