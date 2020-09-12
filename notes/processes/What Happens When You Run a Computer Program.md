@@ -42,7 +42,7 @@ This active form of a computer program is known as a **process**.
 
 **Diagrammatic Representation of a process in memory: **
 
-![A Process in memory](What Happens When You Run a Computer Program.assets/image-20200912000950072.png)
+<img src="What Happens When You Run a Computer Program.assets/image-20200912000950072.png" alt="Process in memory"/>
 
 ## From Memory to CPU
 
@@ -90,7 +90,7 @@ After termination, the OS will reclaim the memory provided to the program to run
 - CPU runs the instructions in the process text segment line by line.
 - The OS keeps everything organized.
 
-![CPU, RAM, Storage](What Happens When You Run a Computer Program.assets/image-20200912123516818.png)
+<img src="What Happens When You Run a Computer Program.assets/image-20200912123516818.png" alt="CPU, RAM, Storage"/>
 
 ---
 
