@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void greetings(char* name,  char(*fn)())
+void greetings(char* name,  char*(*fn)())
 {
-    printf("%s, %s", (*fn)(), name);
+    printf("%s, %s", (char*)(*fn)(), name);
 }
 
 char* formal()
@@ -17,8 +17,10 @@ char* informal()
 
 int main()
 {
-    greetings("Harry", &formal);
-    greetings("Harry", &informal);
+    greetings("Harry", formal);
+    printf("\n");
+    greetings("Harry", informal);
+    printf("\n");
 
     return 0;
 }

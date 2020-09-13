@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        fprintf(stderr, "usage: ./sumofn <integer value>\n");
+        fprintf(stderr, "usage: ./thread0 <integer value>\n");
         return -1;
     }
 
@@ -47,3 +47,7 @@ void *runner(void *param)
 
     pthread_exit(0);
 }
+
+/* ./thread0 5
+sum = 15
+*/
