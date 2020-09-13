@@ -4,7 +4,7 @@
 
 A thread is the smallest sequence of programming instructions that can be managed *independently* by a scheduler.
 
-A thread is a part of a process. All process have atleast one thread and can have multiple in modern operating systems. These threads can execute concurrently and can share resources such as executable code, dynamically allocated and global variables, while different processes do not share these resources.
+A thread is a part of a process. All processes have at least one thread and can have multiple in modern operating systems. These threads can execute concurrently and can share resources such as executable code, dynamically allocated, and global variables, while different processes do not share these resources.
 
 <img src="threads.assets/image-20200913132749676.png" alt="Process and thread" style="zoom:33%;" />
 
@@ -24,13 +24,13 @@ Why do we need threads?
 
 - **Process creation is heavy-weight while thread creation is light-weight.**
 
-  Process creation requires the support of OS while threads are created using **thread libraries**. Creating process requires PCB creation for the new process and separate resources are needed. Context switching is also required in case of processes. Thread creation is lightweight as they share all resources.
+  Process creation requires the support of OS while threads are created using **thread libraries**. Creating a process requires PCB creation for the new process and separate resources are needed. Context switching is also required in case of processes. Thread creation is lightweight as they share all resources.
 
-  **A real world example** - **Web Server**
+  **A real-world example** - **Web Server**
 
   A web server may have several clients concurrently accessing it. If the server ran as a traditional single-threaded process, It would be able to service only one client at a time.
 
-  One solution is to create a separate process to service each request. But **Process creation is time consuming and resource intensive** therefore it is better to use one process with multiple threads.
+  One solution is to create a separate process to service each request. But **Process creation is time-consuming and resource-intensive** therefore it is better to use one process with multiple threads.
 
   ![Server Client Threading](threads.assets/image-20200913135903406.png)
 
@@ -42,7 +42,7 @@ Why do we need threads?
 
 What are the benefits of multi-threaded programming?
 
-- **Responsiveness** - may allow continued execution if part of process is blocked, especially important for user interfaces.
+- **Responsiveness** - may allow continued execution if part of the process is blocked, especially important for user interfaces.
 - **Resource Sharing** - threads share resources of process, easier than shared memory or message passing.
 - **Economy** - cheaper than process creation, thread switching lower overhead than context switching.
 - **Scalability** - Process can take advantage of multiprocessor architecture, threads can be run in parallel on different processors.
@@ -53,15 +53,15 @@ What are the benefits of multi-threaded programming?
 
 - Multiple computing cores can be placed on a single chip, each core appears as a separate processor to the OS.
 
-- Multi-threaded programming provides efficient use of multi-cores and improved concurrency.(See Diagram below)
+- Multi-threaded programming provides efficient use of multi-cores and improved concurrency. (See Diagram below)
 
 - Multicore or multiprocessors systems put pressure on programmers to make better use of multiple cores, challenges include:
 
-  - Dividing activities - Applications needs to be divided into separate, concurrent tasks, thus can run in parallel on individual cores.
+  - Dividing activities - Applications need to be divided into separate, concurrent tasks, thus can run in parallel on individual cores.
   - Balance - Separate tasks must perform equal work of equal value. Using a separate core to run a small task may not be worth the cost.
   - Data Splitting - Data must also be divided together with applications to run on separate cores.
   - Data Dependency - data accessed by the tasks must be examined for dependencies between two or more tasks.
-  - Testing and Debugging - testing and debugging concurrent programs is difficult than doing same for single threaded programs.
+  - Testing and Debugging - testing and debugging concurrent programs is difficult than doing the same for single-threaded programs.
 
 - **Parallelism** implies a system can perform more than one task simultaneously.
 
@@ -71,10 +71,10 @@ What are the benefits of multi-threaded programming?
 
 - Types of parallelism
 
-  - **Data Parallelism** - distributes subsets of the same data across multiple cores, same operation on each.
+  - **Data Parallelism** - distributes subsets of the same data across multiple cores, the same operation on each.
   - **Task Parallelism** - distributes threads across cores, each thread performing unique operations.
 
-- Concurrent Execution on single core system - 
+- Concurrent Execution on a single core system - 
 
   ![concurrent execution](threads.assets/image-20200913153839832.png)
 
@@ -84,13 +84,13 @@ What are the benefits of multi-threaded programming?
 
 ## User threads and Kernel Threads
 
-- **User threads** - management done by user level thread library.
+- **User threads** - management done by user-level thread library.
 - Three primary thread libraries:
   - POSIX **Pthreads**.
   - Windows threads
   - Java threads
 - **Kernel threads** - Supported by the kernel.
-- Examples - virtually all general purpose operating systems support kernel thread, including:
+- Examples - virtually all general-purpose operating systems support kernel thread, including:
   - Windows
   - Solaris
   - Linux
@@ -103,9 +103,9 @@ What are the benefits of multi-threaded programming?
 
 - **Many-to-One**
 
-  - Many user-level threads mapped to single kernel thread.
+  - Many user-level threads are mapped to a single kernel thread.
   - One thread blocking causes all to block.
-  - Multiple threads may not run in parallel on multicore system because only one may be in kernel at a time.
+  - Multiple threads may not run in parallel on a multicore system because only one may be in the kernel at a time.
   - Few systems currently use this model.
   - Examples:
     - Solaris Green Threads
@@ -115,11 +115,11 @@ What are the benefits of multi-threaded programming?
 
 - **One-to-One**
 
-  - Each user-level thread maps to kernel thread.
-  - *Creating a user level thread creates a kernel thread*
+  - Each user-level thread maps to the kernel thread.
+  - *Creating a user-level thread creates a kernel thread*
     - the overhead of creating kernel threads can burden the performance of an application.
   - More concurrency than many to one.
-  - Number of threads per process sometimes restricted due to overhead.
+  - The number of threads per process sometimes restricted due to overhead.
   - Examples:
     - Windows
     - Linux
@@ -129,14 +129,14 @@ What are the benefits of multi-threaded programming?
 
 - **Many-to-Many**
 
-  - Allows many user level thread to be mapped to many kernel threads.
+  - Allows many user-level threads to be mapped to many kernel threads.
   - Allows the OS to create a sufficient number of kernel threads.
-  - Solaris prior to version 9
+  - Solaris before version 9
   - Windows with the ThreadFiber package.
 
 - **Two-Level Model**
 
-  - Similar to Many to Many, except that it allows a user thread to be bound to kernal thread.
+  - Similar to Many to Many, except that it allows a user thread to be bound to a kernel thread.
   - Examples:
     - IRIX
     - HP-UX
@@ -147,13 +147,13 @@ What are the benefits of multi-threaded programming?
 
 ## Thread Libraries
 
-- Thread library provides programmer with **API** for creating and managing threads.
+- Thread library provides a programmer with **API** for creating and managing threads.
 
 - Two primary ways of implementing a thread library - 
 
-  -  Library entirely in user space
-    - All code and data structures for the library exists in user space.
-  - Kernel-level library supported by the OS.
+  -  Library entirely in userspace
+    - All code and data structures for the library exists in userspace.
+  - The kernel-level library is supported by the OS.
     - Code and data structures for the library exist in kernel space.
 
 - **Pthreads**
@@ -161,8 +161,8 @@ What are the benefits of multi-threaded programming?
   - A thread library.
   - May be provided either as user-level or kernel level.
   - A POSIX standard (IEEE 1003.1c) API for thread creation and synchronization.
-  - Specification, not implementation
-  - **API** specifies behaviour of the thread library, implementation is up to development of the library.
+  - Specification, not an implementation
+  - **API** specifies the behavior of the thread library, implementation is up to the development of the library.
   - Common in UNIX operating systems (Solaris, Linux, Mac OS X).
 
 - Example:
