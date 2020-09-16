@@ -91,4 +91,48 @@ float get_avg_WT(process processes[], int num_of_processes)
 }
 
 
+/*
+Enter number of processes: 4
+Enter arrival time and burst time for each process:
+Process 1
+    Arrival time: 0
+    Burst time: 8
+Process 2
+    Arrival time: 1
+    Burst time: 4
+Process 3
+    Arrival time: 2
+    Burst time: 9
+Process 4
+    Arrival time: 3
+    Burst time: 5
+Result:
+Process 1:
+   Arrival Time: 0
+   Burst Time: 8
+   Waiting Time: 0
+   Turnaround Time: 8
+
+Process 2:
+   Arrival Time: 1
+   Burst Time: 4
+   Waiting Time: 7
+   Turnaround Time: 11
+
+Process 3:
+   Arrival Time: 2
+   Burst Time: 9
+   Waiting Time: 10
+   Turnaround Time: 19
+
+Process 4:
+   Arrival Time: 3
+   Burst Time: 5
+   Waiting Time: 18
+   Turnaround Time: 23
+
+Average waiting time is 8.750000
+Average turnaround time is 15.250000
+*/
+
 
