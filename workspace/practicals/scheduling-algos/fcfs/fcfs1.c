@@ -2,6 +2,7 @@
 
 typedef struct process
 {
+    int process_no;
     int arrival_time;
     int burst_time;
     int waiting_time;
@@ -11,6 +12,7 @@ typedef struct process
 void set_WT_BT(process processes[], int num_of_processes);
 float get_avg_TT(process processes[], int num_of_processes);
 float get_avg_WT(process processes[], int num_of_processes);
+void sort_processes_arrival(process processes[], int num_of_processes);
 
 int main()
 {
@@ -28,21 +30,26 @@ int main()
         scanf("%d", &processes[i].arrival_time);
         printf("    Burst time: ");
         scanf("%d", &processes[i].burst_time);
+        processes[i].process_no = i;
         // set TT and WT to 0 initially
         processes[i].turnaround_time = processes[i].waiting_time = 0;
     }
 
+    sort_processes_arrival(processes, num_of_processes);
+
     set_WT_BT(processes, num_of_processes);
 
-    printf("Result:\n");
+    printf("\nResult:\n");
+
+    printf("Order of execution: ");
+    for (int i = 0; i < num_of_processes; i++)
+        printf("Process %d, ", processes[i].process_no + 1);
+    printf("\n");
+
+    printf("Process No.\t\tWaiting Time\t\tTurnaround Time\n");
     for (int i = 0; i < num_of_processes; i++)
     {
-        printf("Process %d:\n", i + 1);
-        printf("   Arrival Time: %d\n", processes[i].arrival_time);
-        printf("   Burst Time: %d\n", processes[i].burst_time);
-        printf("   Waiting Time: %d\n", processes[i].waiting_time);
-        printf("   Turnaround Time: %d\n", processes[i].turnaround_time);
-        printf("\n");
+        printf("%d\t\t\t%d\t\t\t%d\n", i + 1, processes[i].waiting_time, processes[i].turnaround_time);
     }
 
     float avgTT = get_avg_TT(processes, num_of_processes);
@@ -91,13 +98,31 @@ float get_avg_WT(process processes[], int num_of_processes)
     return avg_WT;
 }
 
+void sort_processes_arrival(process processes[], int num_of_processes)
+{
+    int swapped;
+    do
+    {
+        swapped = 0;
+        for (int i = 0; i < num_of_processes - 1; i++)
+        {
+            if (processes[i].arrival_time > processes[i + 1].arrival_time)
+            {
+                process temp = processes[i];
+                processes[i] = processes[i + 1];
+                processes[i + 1] = temp;
+                swapped = 1;
+            }
+        }
+    } while (swapped == 1);
+}
 
 /*
 Enter number of processes: 4
 Enter arrival time and burst time for each process:
 Process 1
-    Arrival time: 0
-    Burst time: 8
+    Arrival time: 3
+    Burst time: 5
 Process 2
     Arrival time: 1
     Burst time: 4
@@ -105,35 +130,16 @@ Process 3
     Arrival time: 2
     Burst time: 9
 Process 4
-    Arrival time: 3
-    Burst time: 5
+    Arrival time: 0
+    Burst time: 8
+
 Result:
-Process 1:
-   Arrival Time: 0
-   Burst Time: 8
-   Waiting Time: 0
-   Turnaround Time: 8
-
-Process 2:
-   Arrival Time: 1
-   Burst Time: 4
-   Waiting Time: 7
-   Turnaround Time: 11
-
-Process 3:
-   Arrival Time: 2
-   Burst Time: 9
-   Waiting Time: 10
-   Turnaround Time: 19
-
-Process 4:
-   Arrival Time: 3
-   Burst Time: 5
-   Waiting Time: 18
-   Turnaround Time: 23
-
+Order of execution: Process 4, Process 2, Process 3, Process 1, 
+Process No.             Waiting Time            Turnaround Time
+1                       0                       8
+2                       7                       11
+3                       10                      19
+4                       18                      23
 Average waiting time is 8.750000
 Average turnaround time is 15.250000
 */
-
-
