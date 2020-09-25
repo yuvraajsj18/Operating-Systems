@@ -1,0 +1,27 @@
+Non-premptive Priority Scheduling
+Enter number of processes: 5
+Enter burst time and priority(rank wise) for each process:
+Process 1:
+        Burst Time: 2
+        Priority: 2
+Process 2:
+        Burst Time: 1
+        Priority: 1
+Process 3:
+        Burst Time: 8
+        Priority: 4
+Process 4:
+        Burst Time: 4
+        Priority: 2
+Process 5:
+        Burst Time: 5
+        Priority: 3
+Order of execution: P2 P1 P4 P5 P3 
+Process No              Waiting Time            Turnaround Time
+2                       0                       1
+1                       1                       3
+4                       3                       7
+5                       7                       12
+3                       12                      20
+Average waiting time: 4.600000
+Average turnaround time: 8.600000

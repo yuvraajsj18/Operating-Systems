@@ -9,7 +9,7 @@ typedef struct process
     int turnaround_time;
 } process;
 
-void set_WT_BT(process processes[], int num_of_processes);
+void set_WT_TT(process processes[], int num_of_processes);
 float get_avg_TT(process processes[], int num_of_processes);
 float get_avg_WT(process processes[], int num_of_processes);
 void sort_processes_arrival(process processes[], int num_of_processes);
@@ -37,7 +37,7 @@ int main()
 
     sort_processes_arrival(processes, num_of_processes);
 
-    set_WT_BT(processes, num_of_processes);
+    set_WT_TT(processes, num_of_processes);
 
     printf("\nResult:\n");
 
@@ -49,7 +49,7 @@ int main()
     printf("Process No.\t\tWaiting Time\t\tTurnaround Time\n");
     for (int i = 0; i < num_of_processes; i++)
     {
-        printf("%d\t\t\t%d\t\t\t%d\n", i + 1, processes[i].waiting_time, processes[i].turnaround_time);
+        printf("%d\t\t\t%d\t\t\t%d\n", processes[i].process_no + 1, processes[i].waiting_time, processes[i].turnaround_time);
     }
 
     float avgTT = get_avg_TT(processes, num_of_processes);
@@ -61,7 +61,7 @@ int main()
     return 0;
 }
 
-void set_WT_BT(process processes[], int num_of_processes)
+void set_WT_TT(process processes[], int num_of_processes)
 {
     // init first process
     processes[0].waiting_time = 0;
