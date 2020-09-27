@@ -1,0 +1,29 @@
+Premptive Priority Scheduling
+Enter number of processes: 4
+Enter arrival time, burst time, and priority for each process:
+Process 1:
+        Arrival Time: 0
+        Burst Time: 5
+        Priority: 2
+Process 2:
+        Arrival Time: 2
+        Burst Time: 3
+        Priority: 1
+Process 3:
+        Arrival Time: 5
+        Burst Time: 6
+        Priority: 3
+Process 4:
+        Arrival Time: 6
+        Burst Time: 2
+        Priority: 4
+Result:
+Order of execution: P1 P2 P1 P3 P4 
+Process No.             Waiting Time            Turnaround Time
+1                       3                       8
+2                       0                       3
+3                       3                       9
+4                       8                       10
+Average waiting time: 3.500000
+Average turnaround time: 7.500000
+

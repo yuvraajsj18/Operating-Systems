@@ -14,7 +14,8 @@ typedef struct process
 
 int set_WT_TT(process processes[], int num_processes, int order[]);
 process* choose_process(process processes[], int num_processes, int time);
-void sort_processes_arrival(process processes[], int num_processes);
+float get_avg_TT(process processes[], int num_processes);
+float get_avg_WT(process processes[], int num_processes);
 
 int main()
 {
@@ -54,13 +55,17 @@ int main()
         printf("%d\t\t\t%d\t\t\t%d\n", processes[i].id, processes[i].waiting_time, processes[i].turnaround_time);
     }
 
+    float avgWT = get_avg_WT(processes, num_processes);
+    float avgTT = get_avg_TT(processes, num_processes);
+
+    printf("Average waiting time: %f\n", avgWT);
+    printf("Average turnaround time: %f\n", avgTT);
+
     return 0;
 }
 
 int set_WT_TT(process processes[], int num_processes, int order[])
 {
-    sort_processes_arrival(processes, num_processes);
-
     int burst_time[num_processes];  // save burst time
     for (int i = 0; i < num_processes; i++)
         burst_time[i] = processes[i].burst_time;
@@ -98,8 +103,17 @@ int set_WT_TT(process processes[], int num_processes, int order[])
 
 process* choose_process(process processes[], int num_processes, int time)
 {   
-    process* to_run = &processes[0];
-    for (int i = 1; i < num_processes; i++)
+    process* to_run;
+
+    // select first process without bt = 0
+    for (int i = 0; i < num_processes; i++)
+        if (processes[i].burst_time != 0)
+        {
+            to_run = &processes[i];
+            break;
+        }
+
+    for (int i = 0; i < num_processes; i++)
     {
         if (processes[i].arrival_time <= time && processes[i].burst_time > 0)
         {
@@ -110,22 +124,55 @@ process* choose_process(process processes[], int num_processes, int time)
     return to_run;
 }
 
-void sort_processes_arrival(process processes[], int num_processes)
+float get_avg_TT(process processes[], int num_processes)
 {
-    int swapped;
-    do
+    float sum_TT = 0.0;
+    for (int i = 0; i < num_processes; i++)
     {
-        swapped = 0;
-        for (int i = 0; i < num_processes - 1; i++)
-        {
-            if (processes[i].arrival_time > processes[i + 1].arrival_time)
-            {
-                process temp = processes[i];
-                processes[i] = processes[i + 1];
-                processes[i + 1] = temp;
-                swapped = 1;
-            }
-        }
-        num_processes--;
-    } while (swapped == 1);
+        sum_TT += processes[i].turnaround_time;
+    }
+    float avg_TT = sum_TT / (float)num_processes;
+    return avg_TT;
 }
+
+float get_avg_WT(process processes[], int num_processes)
+{
+    float sum_WT = 0.0;
+    for (int i = 0; i < num_processes; i++)
+    {
+        sum_WT += processes[i].waiting_time;
+    }
+    float avg_WT = sum_WT / (float) num_processes;
+    return avg_WT;
+}
+
+/*
+Premptive Priority Scheduling
+Enter number of processes: 4
+Enter arrival time, burst time, and priority for each process:
+Process 1:
+        Arrival Time: 0
+        Burst Time: 5
+        Priority: 2
+Process 2:
+        Arrival Time: 2
+        Burst Time: 3
+        Priority: 1
+Process 3:
+        Arrival Time: 5
+        Burst Time: 6
+        Priority: 3
+Process 4:
+        Arrival Time: 6
+        Burst Time: 2
+        Priority: 4
+Result:
+Order of execution: P1 P2 P1 P3 P4 
+Process No.             Waiting Time            Turnaround Time
+1                       3                       8
+2                       0                       3
+3                       3                       9
+4                       8                       10
+Average waiting time: 3.500000
+Average turnaround time: 7.500000
+*/

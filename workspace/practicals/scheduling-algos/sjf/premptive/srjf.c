@@ -13,7 +13,6 @@ typedef struct process
 
 int set_WT_TT(process processes[], int num_processes, int order[]);
 process* choose_process(process processes[], int num_processes, int time);
-void sort_processes_arrival(process processes[], int num_of_processes);
 float get_avg_TT(process processes[], int num_processes);
 float get_avg_WT(process processes[], int num_processes);
 
@@ -63,8 +62,6 @@ int main()
 
 int set_WT_TT(process processes[], int num_processes, int order[])
 {
-    sort_processes_arrival(processes, num_processes);
-
     int burst_time[num_processes];  // save burst time
     for (int i = 0; i < num_processes; i++)
         burst_time[i] = processes[i].burst_time;
@@ -102,8 +99,18 @@ int set_WT_TT(process processes[], int num_processes, int order[])
 
 process* choose_process(process processes[], int num_processes, int time)
 {   
-    process* to_run = &processes[0];
-    for (int i = 1; i < num_processes; i++)
+    process* to_run;
+
+    // select first process without bt = 0
+    for (int i = 0; i < num_processes; i++)
+        if (processes[i].burst_time != 0)
+            if (processes[i].burst_time != 0)
+            {
+                to_run = &processes[i];
+                break;
+            }
+
+    for (int i = 0; i < num_processes; i++)
     {
         if (processes[i].arrival_time <= time && processes[i].burst_time > 0)
         {
@@ -134,25 +141,6 @@ float get_avg_WT(process processes[], int num_processes)
     }
     float avg_WT = sum_WT / (float) num_processes;
     return avg_WT;
-}
-
-void sort_processes_arrival(process processes[], int num_of_processes)
-{
-    int swapped;
-    do
-    {
-        swapped = 0;
-        for (int i = 0; i < num_of_processes - 1; i++)
-        {
-            if (processes[i].arrival_time > processes[i + 1].arrival_time)
-            {
-                process temp = processes[i];
-                processes[i] = processes[i + 1];
-                processes[i + 1] = temp;
-                swapped = 1;
-            }
-        }
-    } while (swapped == 1);
 }
 
 /*
