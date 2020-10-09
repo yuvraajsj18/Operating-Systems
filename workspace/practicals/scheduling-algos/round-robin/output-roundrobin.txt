@@ -1,0 +1,25 @@
+Round Robin Scheduling
+Enter number of processes: 4
+Enter Time Quantum: 2
+Enter burst time for each process:
+Process 1:
+        Arrival Time: 0
+        Burst Time: 5
+Process 2:
+        Arrival Time: 1
+        Burst Time: 4
+Process 3:
+        Arrival Time: 2
+        Burst Time: 2
+Process 4:
+        Arrival Time: 3
+        Burst Time: 1
+Result:
+Order of execution: P1 P2 P3 P4 P1 P2 P1 
+Process No.             Waiting Time            Turnaround Time
+1                       7                       12
+2                       6                       10
+3                       2                       4
+4                       3                       4
+Average waiting time: 4.500000
+Average turnaround time: 7.500000

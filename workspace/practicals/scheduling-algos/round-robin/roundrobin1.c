@@ -1,11 +1,10 @@
-// Round robin without arrival time
-
 #include <stdio.h>
 
 typedef struct process
 {
     int id;
     int burst_time;
+    int arrival_time;
     int waiting_time;
     int turnaround_time;
 } process;
@@ -32,6 +31,8 @@ int main()
     for (int i = 0; i < num_processes; i++)
     {
         printf("Process %d:\n", i + 1);
+        printf("\tArrival Time: ");
+        scanf("%d", &processes[i].arrival_time);
         printf("\tBurst Time: ");
         scanf("%d", &processes[i].burst_time);
         processes[i].id = i + 1;
@@ -88,13 +89,13 @@ int set_WT_TT(process processes[], int num_processes, int order[], int time_quan
         if (running_process->burst_time == 0)
         {
             processes_completed++;
-            running_process->turnaround_time = time;
+            running_process->turnaround_time = time - running_process->arrival_time;
         }
 
         if ((time - last_exit_time) % time_quantum == 0 || running_process->burst_time == 0)
         {
             int next_process = running_process->id % num_processes;
-            while ((processes[next_process].burst_time == 0) && processes_completed != num_processes)
+            while (processes[next_process].arrival_time <= time && processes[next_process].burst_time == 0 && processes_completed != num_processes)
                 next_process = (next_process + 1) % num_processes;
 
             running_process = &processes[next_process];
@@ -134,28 +135,29 @@ float get_avg_WT(process processes[], int num_processes)
 
 /*
 Round Robin Scheduling
-Enter number of processes: 5
+Enter number of processes: 4
 Enter Time Quantum: 2
 Enter burst time for each process:
 Process 1:
-        Burst Time: 2
-Process 2:
-        Burst Time: 1
-Process 3:
-        Burst Time: 8
-Process 4:
-        Burst Time: 4
-Process 5:
+        Arrival Time: 0
         Burst Time: 5
+Process 2:
+        Arrival Time: 1
+        Burst Time: 4
+Process 3:
+        Arrival Time: 2
+        Burst Time: 2
+Process 4:
+        Arrival Time: 3
+        Burst Time: 1
 Result:
-Order of execution: P1 P2 P3 P4 P5 P3 P4 P5 P3 P5 P3 
+Order of execution: P1 P2 P3 P4 P1 P2 P1 
 Process No.             Waiting Time            Turnaround Time
-1                       0                       2
-2                       2                       3
-3                       12                      20
-4                       9                       13
-5                       13                      18
-Average waiting time: 7.200000
-Average turnaround time: 11.200000
+1                       7                       12
+2                       6                       10
+3                       2                       4
+4                       3                       4
+Average waiting time: 4.500000
+Average turnaround time: 7.500000
 */
 
