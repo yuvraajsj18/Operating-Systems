@@ -13,7 +13,6 @@ int set_WT_TT(process processes[], int num_processes, int order[], int time_quan
 float get_avg_TT(process processes[], int num_processes);
 float get_avg_WT(process processes[], int num_processes);
 
-
 int main()
 {
     printf("Round Robin Scheduling\n");
@@ -74,7 +73,12 @@ int set_WT_TT(process processes[], int num_processes, int order[], int time_quan
     // calculate turnaround time
     int processes_completed = 0;
     int time = 0;
-    process *running_process = &processes[0];
+
+    process *running_process;
+    int i = 0;
+    while (processes[i++].arrival_time != 0);
+    running_process = &processes[i - 1]; 
+
     int last_exit_time = 0;
     while (processes_completed != num_processes)
     {
