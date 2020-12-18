@@ -1,0 +1,28 @@
+First Fit Memory Allocation
+Enter number of holes: 5
+Enter size of hole 1: 20
+Enter size of hole 2: 10
+Enter size of hole 3: 20
+Enter size of hole 4: 10
+Enter size of hole 5: 20
+Enter number of processes: 5
+Enter size of process 1: 10
+Enter size of process 2: 20
+Enter size of process 3: 5
+Enter size of process 4: 30
+Enter size of process 5: 10
+
+
+Process         Hole Number             Space Left
+1                       1                       10
+2                       3                       0
+3                       1                       5
+4                       No hole of enough size found
+5                       2                       0
+
+Hole Number             Space Left
+1                       5
+2                       0
+3                       0
+4                       10
+5                       20

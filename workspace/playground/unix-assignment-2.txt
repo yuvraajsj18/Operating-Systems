@@ -110,13 +110,5 @@ line 3 in file2
     who | sort displays the users after sorting 
     who > sort creates a file named sort and stores the output of who that is the list of user in it.
 
-
-----------------
-
-12. 
-
-
-
-
 --------------
 

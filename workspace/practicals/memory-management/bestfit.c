@@ -47,27 +47,27 @@ void fill_holes(int mem_holes[], int num_holes, int processes_size[], int num_pr
 
         // find hole number to fit
         int hole_num = -1;
-        int difference = -1;
+        int min_difference = -1;
         for (int j = 0; j < num_holes; j++)
         {
-            if (mem_holes[j] - processes_size[i] >= 0)
+            if (mem_holes[j] - processes_size[i] >= 0)  // find a hole with enough space
             {
                 hole_num = j;
-                difference = mem_holes[j] - processes_size[i];
+                min_difference = mem_holes[j] - processes_size[i];
                 break;
             }
         }
 
-        for (int j = 0; j < num_holes; j++)
+        for (int j = 0; j < num_holes; j++) // check if there's a better hole with smaller difference
         {
-            if (mem_holes[j] - processes_size[i] >= 0 && mem_holes[j] - processes_size[i] < difference)
+            if (mem_holes[j] - processes_size[i] >= 0 && mem_holes[j] - processes_size[i] < min_difference)
             {
                 hole_num = j;
-                difference = mem_holes[j] - processes_size[i];
+                min_difference = mem_holes[j] - processes_size[i];
             }
         }
 
-        if (hole_num != -1)
+        if (hole_num != -1) // if a fitting hole is found
         {
             printf("%d\t\t\t", hole_num + 1);    // Hole Number
 
